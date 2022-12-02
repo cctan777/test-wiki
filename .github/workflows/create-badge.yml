@@ -1,0 +1,31 @@
+name: Update README.md
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  Update_README:
+    name: Update README.md
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout PR merged with Main
+        uses: actions/checkout@v3
+        if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
+        with:
+          ref: refs/pull/${{ github.event.number }}/merge
+      
+      - name: Checkout Main
+        uses: actions/checkout@v3
+
+      - name: Build-A-Badge
+        uses: peterrhodesdev/build-a-badge@v1.3.1
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          filename: my-badge
+          label: my
+          message: badge
