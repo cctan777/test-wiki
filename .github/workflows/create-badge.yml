@@ -52,6 +52,9 @@ jobs:
         run: |
           [ -e NoiseOptimiser-coverage-badge.svg ] && rm NoiseOptimiser-coverage-badge.svg
 
+      - name: Check to see if the file has been deleted
+        run: ls -al
+
       - name: Download Coverage Badge From Artifacts
         uses: actions/download-artifact@v3
         with:
