@@ -63,7 +63,7 @@ jobs:
 
       - name: change timestamp of coverage badge
         run: |
-          touch NoiseOptimiser-coverage-badge.svg
+          touch -d "2 hours ago" NoiseOptimiser-coverage-badge.svg
 
       - name: Check contents of repo wiki
         run: ls -al
