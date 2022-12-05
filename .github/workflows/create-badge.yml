@@ -39,7 +39,7 @@ jobs:
       - name: Checkout wiki
         uses: actions/checkout@v3
         with: 
-          repository: ${{ github.event.repository.name }}.wiki
+          repository: cctan777.test-wiki.wiki
 
       - name: Check contents of repo wiki
         run: ls -al
@@ -57,5 +57,5 @@ jobs:
       - name: Push changes to wiki repo
         uses: ad-m/github-push-action@master
         with:
-          repository: ${{ github.event.repository.name }}.wiki
+          repository: cctan777.test-wiki.wiki
           github_token: ${{ secrets.GH_TOKEN }}
