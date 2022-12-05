@@ -43,7 +43,7 @@ jobs:
 
     steps:
 
-      - name: Checkout wiki
+      - name: Checkout repo wiki
         uses: actions/checkout@v3
         with: 
           repository: cctan777/test-wiki.wiki
@@ -55,7 +55,7 @@ jobs:
       - name: Check to see if the file has been deleted
         run: ls -al
 
-      - name: Commit files
+      - name: Commit Change
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
@@ -73,17 +73,14 @@ jobs:
           name: coverage-badge
           path: ./
 
-      - name: change timestamp of coverage badge
-        run: |
-          touch -d "2 hours ago" NoiseOptimiser-coverage-badge.svg
+      # - name: change timestamp of coverage badge
+      #   run: |
+      #     touch -d "2 hours ago" NoiseOptimiser-coverage-badge.svg
 
       - name: Check contents of repo wiki
         run: ls -al
 
-      # - name: create new file from badge
-      #   run: cat NoiseOptimiser-coverage-badge-svg > new-coverage-badge.svg
-
-      - name: Commit files
+      - name: Commit Change
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
@@ -94,11 +91,3 @@ jobs:
         if: always()
         run: |
           git push
-
-
-      # - name: Push changes to wiki repo
-      #   uses: ad-m/github-push-action@master
-      #   with:
-      #     repository: cctan777/test-wiki/wiki
-      #     github_token: ${{ secrets.GH_TOKEN }}
-      #   if: always()
