@@ -39,6 +39,7 @@ jobs:
   Upload_SVG_Badge:
     name: Upload SVG badge
     runs-on: ubuntu-latest
+    needs: [ Update_README ]
 
     steps:
 
