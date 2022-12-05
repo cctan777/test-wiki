@@ -22,40 +22,52 @@ jobs:
       - name: Checkout Main
         uses: actions/checkout@v3
 
-      - name: Build-A-Badge
-        uses: peterrhodesdev/build-a-badge@v1.3.1
+      - name: Upload Coverage Badge
+        uses: actions/upload-artifact@v3
         with:
-          token: ${{ secrets.GH_TOKEN }}
-          filename: my-badge
-          label: coverage
-          message: 88.18%
+          name: coverage-badge
+          path: NoiseOptimiser-coverage-badge-auto.svg
 
-  # Upload_SVG_Badge:
-  #   name: Upload SVG badge
-  #   runs-on: ubuntu-latest
+      # - name: Build-A-Badge
+      #   uses: peterrhodesdev/build-a-badge@v1.3.1
+      #   with:
+      #     token: ${{ secrets.GH_TOKEN }}
+      #     filename: my-badge
+      #     label: coverage
+      #     message: 88.18%
 
-  #   steps:
+  Upload_SVG_Badge:
+    name: Upload SVG badge
+    runs-on: ubuntu-latest
 
-  #     - name: Checkout wiki
-  #       uses: actions/checkout@v3
-  #       with: 
-  #         repository: cctan777/test-wiki.wiki
+    steps:
 
-  #     - name: Check contents of repo wiki
-  #       run: ls -al
+      - name: Checkout wiki
+        uses: actions/checkout@v3
+        with: 
+          repository: cctan777/test-wiki.wiki
 
-  #     - name: create new file from badge
-  #       run: cat NoiseOptimiser-coverage-badge-svg > new-coverage-badge.svg
+      - name: Download Coverage BAdge From Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: coverage-badge
+          path: ./
 
-  #     - name: Commit files
-  #       run: |
-  #         git config --local user.email "action@github.com"
-  #         git config --local user.name "GitHub Action"
-  #         git add .
-  #         git commit -m "Add changes"
+      - name: Check contents of repo wiki
+        run: ls -al
+
+      # - name: create new file from badge
+      #   run: cat NoiseOptimiser-coverage-badge-svg > new-coverage-badge.svg
+
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Add changes"
   
-  #     - name: Push changes to wiki repo
-  #       uses: ad-m/github-push-action@master
-  #       with:
-  #         repository: cctan777/test-wiki.wiki
-  #         github_token: ${{ secrets.GH_TOKEN }}
+      - name: Push changes to wiki repo
+        uses: ad-m/github-push-action@master
+        with:
+          repository: cctan777/test-wiki.wiki
+          github_token: ${{ secrets.GH_TOKEN }}
