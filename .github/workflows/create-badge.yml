@@ -48,9 +48,9 @@ jobs:
         with: 
           repository: cctan777/test-wiki.wiki
 
-      - name: Delete Existing Badge (if exists)
-        run: |
-          [ -e NoiseOptimiser-coverage-badge.svg ] && rm NoiseOptimiser-coverage-badge.svg
+      # - name: Delete Existing Badge (if exists)
+      #   run: |
+      #     [ -e NoiseOptimiser-coverage-badge.svg ] && rm NoiseOptimiser-coverage-badge.svg
 
       - name: Check to see if the file has been deleted
         run: ls -al
@@ -60,6 +60,10 @@ jobs:
         with:
           name: coverage-badge
           path: ./
+
+      - name: change timestamp of coverage badge
+        run: |
+          touch NoiseOptimiser-coverage-badge.svg
 
       - name: Check contents of repo wiki
         run: ls -al
