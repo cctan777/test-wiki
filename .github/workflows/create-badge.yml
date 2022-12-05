@@ -53,7 +53,8 @@ jobs:
 
       - name: Delete Existing Badge (if exists)
         run: |
-          [ -e NoiseOptimiser-coverage-badge.svg ] && rm NoiseOptimiser-coverage-badge.svg
+          rm -f NoiseOptimiser-coverage-badge.svg
+#          [ -e NoiseOptimiser-coverage-badge.svg ] && rm NoiseOptimiser-coverage-badge.svg
 
       - name: Check to see if the file has been deleted
         run: ls -al
