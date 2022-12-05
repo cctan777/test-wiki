@@ -108,8 +108,9 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add .
           git commit -m "Add changes"
-
-      - name: Push 
-        if: always()
-        run: |
           git push
+
+      # - name: Push 
+      #   if: always()
+      #   run: |
+      #     git push
