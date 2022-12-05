@@ -70,6 +70,6 @@ jobs:
       - name: Push changes to wiki repo
         uses: ad-m/github-push-action@master
         with:
-          repository: cctan777/test-wiki.wiki.git
+          repository: cctan777/test-wiki/wiki
           github_token: ${{ secrets.GH_TOKEN }}
         if: always()
