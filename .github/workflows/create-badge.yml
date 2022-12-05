@@ -29,3 +29,33 @@ jobs:
           filename: my-badge
           label: my
           message: badge
+
+  Upload_SVG_Badge:
+    name: Upload SVG badge
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout wiki
+        uses: actions/checkout@v3
+        with: 
+          repository: ${{ github.event.repository.name }}.wiki
+
+      - name: Check contents of repo wiki
+        run: ls -al
+
+      - name: create new file from badge
+        run: cat NoiseOptimiser-coverage-badge-svg > new-coverage-badge.svg
+
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Add changes"
+  
+      - name: Push changes to wiki repo
+        uses: ad-m/github-push-action@master
+        with:
+          repository: ${{ github.event.repository.name }}.wiki
+          github_token: ${{ secrets.GH_TOKEN }}
