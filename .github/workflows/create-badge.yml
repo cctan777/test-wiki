@@ -48,7 +48,11 @@ jobs:
         with: 
           repository: cctan777/test-wiki.wiki
 
-      - name: Download Coverage BAdge From Artifacts
+      - name: Delete Existing Badge (if exists)
+        run: |
+          [ -e NoiseOptimiser-coverage-badge.svg ] && rm NoiseOptimiser-coverage-badge.svg
+
+      - name: Download Coverage Badge From Artifacts
         uses: actions/download-artifact@v3
         with:
           name: coverage-badge
