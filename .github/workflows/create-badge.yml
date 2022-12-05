@@ -26,7 +26,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: coverage-badge
-          path: NoiseOptimiser-coverage-badge-auto.svg
+          path: NoiseOptimiser-coverage-badge.svg
 
       # - name: Build-A-Badge
       #   uses: peterrhodesdev/build-a-badge@v1.3.1
