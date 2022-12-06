@@ -30,7 +30,7 @@ jobs:
           badge=$(head -n 1 ${{ env.APP_NAME }}-code-coverage-results.md)
           echo $badge
           badge=`echo $badge | cut -c 18-`
-          badge=`echo $myVar | sed 's/.$//'`
+          badge=`echo $badge | sed 's/.$//'`
           echo $badge
 
 
