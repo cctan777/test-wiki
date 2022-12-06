@@ -7,6 +7,9 @@ on:
   pull_request:
   workflow_dispatch:
 
+env:
+  APP_NAME: 'test-wiki'
+
 jobs:
   Update_README:
     name: Update README.md
@@ -26,7 +29,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: coverage-badge
-          path: NoiseOptimiser-coverage-badge.svg
+          path: ${{ env.APP_NAME }}-coverage-badge.svg
 
       # - name: Build-A-Badge
       #   uses: peterrhodesdev/build-a-badge@v1.3.1
@@ -46,7 +49,7 @@ jobs:
       - name: Checkout repo wiki
         uses: actions/checkout@v3
         with: 
-          repository: cctan777/test-wiki.wiki
+          repository: cctan777/${{ env.APP_NAME }}.wiki
 
       - name: Check contents of folder
         run: ls -al
@@ -55,12 +58,13 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: "NoiseOptimiser-coverage-badge.svg"
+          files: ${{ env.APP_NAME }}-coverage-badge.svg
+#          files: "${{ env.APP_NAME }}-coverage-badge.svg"
 
       - name: File exists
         if: steps.check_files.outputs.files_exists == 'true'
         run: |
-          rm -f NoiseOptimiser-coverage-badge.svg
+          rm -f ${{ env.APP_NAME }}-coverage-badge.svg
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .
