@@ -25,6 +25,21 @@ jobs:
       - name: Checkout Main
         uses: actions/checkout@v3
 
+      - name: Extract Badge From Code Coverage Results
+        run: |
+          badge=$(head -n 1 code-coverage-results.md)
+          echo $badge
+          badge=`echo $badge | cut -c 18-`
+          badge=`echo $myVar | sed 's/.$//'`
+          echo $badge
+
+
+      - name: Upload Code Coverage Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-results
+          path: ${{ env.APP_NAME }}-code-coverage-results.md
+
       - name: Upload Coverage Badge
         uses: actions/upload-artifact@v3
         with:
