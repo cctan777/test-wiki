@@ -27,7 +27,7 @@ jobs:
 
       - name: Extract Badge From Code Coverage Results
         run: |
-          badge=$(head -n 1 code-coverage-results.md)
+          badge=$(head -n 1 ${{ env.APP_NAME }}-code-coverage-results.md)
           echo $badge
           badge=`echo $badge | cut -c 18-`
           badge=`echo $myVar | sed 's/.$//'`
