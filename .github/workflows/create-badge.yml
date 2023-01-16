@@ -73,13 +73,12 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: NoiseOptimiser-coverage-badge.svg, my-badge.md, test-badge.md
-#          files: ${{ env.APP_NAME }}-coverage-badge.svg
+          files: ${{ env.APP_NAME }}-coverage-badge.svg
 
       - name: File exists
         if: steps.check_files.outputs.files_exists == 'true'
         run: |
-          rm -f NoiseOptimiser-coverage-badge.svg my-badge.md test-badge.md
+          rm -f ${{ env.APP_NAME }}-coverage-badge.svg
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .
@@ -87,9 +86,11 @@ jobs:
           git push
 
       - name: Check to see if the file has been deleted
+        if: steps.check_files.outputs.files_exists == 'true'
         run: ls -al
 
       - name: Commit Change
+        if: steps.check_files.outputs.files_exists == 'true'
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
