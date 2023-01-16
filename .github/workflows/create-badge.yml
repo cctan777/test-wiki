@@ -33,6 +33,9 @@ jobs:
           badge=`echo $badge | sed 's/.$//'`
           echo $badge
 
+      - name: Update README.md with Code Coverage Badge
+        run: sed -i -e "s|<coverage-badge>.*</coverage-badge>|<coverage-badge>$badge<r$RANDOM$RANDOM></coverage-badge>|g" README.md
+
       - name: Upload Coverage Badge
         uses: actions/upload-artifact@v3
         with:

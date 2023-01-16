@@ -6,4 +6,4 @@
 
 [![](https://github.com/cctan777/test-wiki/wiki/test-wiki-coverage-badge.svg)](https://github.com/cctan777/test-wiki/wiki/test-wiki-coverage-results)
 
-<r123>[![](https://img.shields.io/badge/Code%20Coverage-85%25-success?style=flat)](https://github.com/cctan777/test-wiki/wiki/test-wiki-coverage-results)<r1234>
+<code-coverate>[![](https://img.shields.io/badge/Code%20Coverage-85%25-success?style=flat)](https://github.com/cctan777/test-wiki/wiki/test-wiki-coverage-results)<r1234></code-coverage>
