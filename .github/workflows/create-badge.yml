@@ -33,6 +33,9 @@ jobs:
           badge=`echo $badge | sed 's/.$//'`
           echo $badge
 
+      - name: Get branch name
+        run: echo ${{ github.ref_name }}
+
       - name: Update README.md with Code Coverage Badge
         run: sed -i -e "s|<coverage-badge>.*</coverage-badge>|<coverage-badge>[![]($badge)]()<r$RANDOM$RANDOM></coverage-badge>|g" README.md
 
@@ -108,4 +111,3 @@ jobs:
           git add .
           git commit -m "Add changes"
           git push
-##
