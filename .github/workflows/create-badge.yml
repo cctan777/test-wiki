@@ -27,25 +27,18 @@ jobs:
 
       - name: Extract Badge From Code Coverage Results
         run: |
-          badge=$(head -n 1 ${{ env.APP_NAME }}-code-coverage-results.md)
+          badge=$(head -n 1 ${{ env.APP_NAME }}-coverage-results.md)
           echo $badge
           badge=`echo $badge | cut -c 18-`
           badge=`echo $badge | sed 's/.$//'`
           echo $badge
 
-
-      - name: Upload Code Coverage Results
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage-results
-          path: ${{ env.APP_NAME }}-code-coverage-results.md
-
       - name: Upload Coverage Badge
         uses: actions/upload-artifact@v3
         with:
-          name: coverage-badge
+          name: results-and-badge
           path: |
-            ${{ env.APP_NAME }}-code-coverage-results.md
+            ${{ env.APP_NAME }}-coverage-results.md
             ${{ env.APP_NAME }}-coverage-badge.svg
 
       # - name: Build-A-Badge
@@ -103,7 +96,7 @@ jobs:
       - name: Download Coverage Badge From Artifacts
         uses: actions/download-artifact@v3
         with:
-          name: coverage-badge
+          name: results-and-badge
           path: ./
 
       - name: Check contents of repo wiki
