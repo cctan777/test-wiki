@@ -89,27 +89,27 @@ jobs:
           git commit -m "Add changes"
           git push
 #####################################################################################################
-#      - name: Delete Existing Badge (if exists)
-#        env:
-#          BADGE_EXISTS: ${{ if }}
-#        run: |
-#          rm -f NoiseOptimiser-coverage-badge.svg
+      - name: Delete Existing Badge (if exists)
+        env:
+          BADGE_EXISTS: ${{ if }}
+        run: |
+          rm -f NoiseOptimiser-coverage-badge.svg
 ##          [ -e NoiseOptimiser-coverage-badge.svg ] && rm NoiseOptimiser-coverage-badge.svg
 
       - name: Check to see if the file has been deleted
         run: ls -al
 
-#      - name: Commit Change
-#        run: |
-#          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-#          git config --local user.name "github-actions[bot]"
-#          git add .
-#          git commit -m "Add changes"
+      - name: Commit Change
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git commit -m "Add changes"
 
-#      - name: Push 
-#        if: always()
-#        run: |
-#          git push
+      # - name: Push 
+      #   if: always()
+      #   run: |
+      #     git push
 
       - name: Download Coverage Badge From Artifacts
         uses: actions/download-artifact@v3
