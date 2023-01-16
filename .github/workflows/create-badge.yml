@@ -77,7 +77,6 @@ jobs:
         uses: andstor/file-existence-action@v2
         with:
           files: ${{ env.APP_NAME }}-coverage-badge.svg
-#          files: "${{ env.APP_NAME }}-coverage-badge.svg"
 
       - name: File exists
         if: steps.check_files.outputs.files_exists == 'true'
@@ -88,13 +87,6 @@ jobs:
           git add .
           git commit -m "Add changes"
           git push
-#####################################################################################################
-      - name: Delete Existing Badge (if exists)
-        env:
-          BADGE_EXISTS: ${{ if }}
-        run: |
-          rm -f NoiseOptimiser-coverage-badge.svg
-##          [ -e NoiseOptimiser-coverage-badge.svg ] && rm NoiseOptimiser-coverage-badge.svg
 
       - name: Check to see if the file has been deleted
         run: ls -al
@@ -105,21 +97,13 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add .
           git commit -m "Add changes"
-
-      # - name: Push 
-      #   if: always()
-      #   run: |
-      #     git push
+          git push
 
       - name: Download Coverage Badge From Artifacts
         uses: actions/download-artifact@v3
         with:
           name: coverage-badge
           path: ./
-
-      # - name: change timestamp of coverage badge
-      #   run: |
-      #     touch -d "2 hours ago" NoiseOptimiser-coverage-badge.svg
 
       - name: Check contents of repo wiki
         run: ls -al
@@ -131,8 +115,3 @@ jobs:
           git add .
           git commit -m "Add changes"
           git push
-
-      # - name: Push 
-      #   if: always()
-      #   run: |
-      #     git push
