@@ -46,7 +46,7 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           add: ${{ github.workspace }}/README.md
-          push: origin test --force
+          push: origin test --set-upstream --force
 
       - name: Upload Coverage Badge
         uses: actions/upload-artifact@v3
