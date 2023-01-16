@@ -39,10 +39,10 @@ jobs:
       - name: Update README.md with Code Coverage Badge
         run: sed -i -e "s|<coverage-badge>.*</coverage-badge>|<coverage-badge>[![]($badge)]()<r$RANDOM$RANDOM></coverage-badge>|g" README.md
 
-      - name: Upload README.md
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: ${{ github.workspace }}/README.md
+      # - name: Upload README.md
+      #   uses: EndBug/add-and-commit@v9
+      #   with:
+      #     add: ${{ github.workspace }}/README.md
 
       - name: Upload Coverage Badge
         uses: actions/upload-artifact@v3
