@@ -39,14 +39,8 @@ jobs:
           echo Branch name is ${{ github.ref_name }}
           echo Branch name is ${{ github.head_ref }}
 
-      - name: Update README.md with Code Coverage Badge
-        run: sed -i -e "s|<coverage-badge>.*</coverage-badge>|<coverage-badge>[![]($badge)]()<r$RANDOM$RANDOM></coverage-badge>|g" README.md
-
-      - name: Upload README.md
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: ${{ github.workspace }}/README.md
-          push: origin test --set-upstream --force
+      # - name: Update README.md with Code Coverage Badge
+      #   run: sed -i -e "s|<coverage-badge>.*</coverage-badge>|<coverage-badge>[![]($badge)]()<r$RANDOM$RANDOM></coverage-badge>|g" README.md
 
       - name: Upload Coverage Badge
         uses: actions/upload-artifact@v3
@@ -79,25 +73,25 @@ jobs:
       - name: Check contents of folder
         run: ls -al
 
-      - name: Check Badge existence
-        id: check_files
-        uses: andstor/file-existence-action@v2
-        with:
-          files: ${{ env.APP_NAME }}-coverage-badge.svg, ${{ env.APP_NAME }}-coverage-results.md
+      # - name: Check Badge existence
+      #   id: check_files
+      #   uses: andstor/file-existence-action@v2
+      #   with:
+      #     files: ${{ env.APP_NAME }}-coverage-badge.svg, ${{ env.APP_NAME }}-coverage-results.md
 
-      - name: File exists
-        if: steps.check_files.outputs.files_exists == 'true'
-        run: |
-          rm -f ${{ env.APP_NAME }}-coverage-badge.svg ${{ env.APP_NAME }}-coverage-results.md
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add .
-          git commit -m "Add changes"
-          git push
+      # - name: File exists
+      #   if: steps.check_files.outputs.files_exists == 'true'
+      #   run: |
+      #     rm -f ${{ env.APP_NAME }}-coverage-badge.svg ${{ env.APP_NAME }}-coverage-results.md
+      #     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      #     git config --local user.name "github-actions[bot]"
+      #     git add .
+      #     git commit -m "Add changes"
+      #     git push
 
-      - name: Check to see if the file has been deleted
-        if: steps.check_files.outputs.files_exists == 'true'
-        run: ls -al
+      # - name: Check to see if the file has been deleted
+      #   if: steps.check_files.outputs.files_exists == 'true'
+      #   run: ls -al
 
       - name: Download Coverage Badge From Artifacts
         uses: actions/download-artifact@v3
