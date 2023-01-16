@@ -36,6 +36,11 @@ jobs:
       - name: Update README.md with Code Coverage Badge
         run: sed -i -e "s|<coverage-badge>.*</coverage-badge>|<coverage-badge>[![]($badge)]()<r$RANDOM$RANDOM></coverage-badge>|g" README.md
 
+      - name: Upload README.md
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: ${{ github.workspace }}/README.md
+
       - name: Upload Coverage Badge
         uses: actions/upload-artifact@v3
         with:
@@ -86,15 +91,6 @@ jobs:
       - name: Check to see if the file has been deleted
         if: steps.check_files.outputs.files_exists == 'true'
         run: ls -al
-
-      # - name: Commit Change
-      #   if: steps.check_files.outputs.files_exists == 'true'
-      #   run: |
-      #     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      #     git config --local user.name "github-actions[bot]"
-      #     git add .
-      #     git commit -m "Add changes"
-      #     git push
 
       - name: Download Coverage Badge From Artifacts
         uses: actions/download-artifact@v3
