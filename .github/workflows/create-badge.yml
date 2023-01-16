@@ -68,12 +68,13 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: ${{ env.APP_NAME }}-coverage-badge.svg, ${{ env.APP_NAME }}-coverage-results.md
+          files: ${{ env.APP_NAME }}-coverage-results.md
+          # files: ${{ env.APP_NAME }}-coverage-badge.svg, ${{ env.APP_NAME }}-coverage-results.md
 
       - name: File exists
         if: steps.check_files.outputs.files_exists == 'true'
         run: |
-          rm -f ${{ env.APP_NAME }}-coverage-badge.svg
+          rm -f ${{ env.APP_NAME }}-coverage-results.md
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .
