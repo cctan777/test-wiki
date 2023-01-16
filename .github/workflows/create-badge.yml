@@ -84,14 +84,14 @@ jobs:
         if: steps.check_files.outputs.files_exists == 'true'
         run: ls -al
 
-      - name: Commit Change
-        if: steps.check_files.outputs.files_exists == 'true'
-        run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add .
-          git commit -m "Add changes"
-          git push
+      # - name: Commit Change
+      #   if: steps.check_files.outputs.files_exists == 'true'
+      #   run: |
+      #     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      #     git config --local user.name "github-actions[bot]"
+      #     git add .
+      #     git commit -m "Add changes"
+      #     git push
 
       - name: Download Coverage Badge From Artifacts
         uses: actions/download-artifact@v3
