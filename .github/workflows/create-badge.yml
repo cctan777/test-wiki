@@ -57,6 +57,8 @@ jobs:
   Upload_SVG_Badge:
     name: Upload SVG badge
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     needs: [ Update_README ]
 
     steps:
@@ -64,7 +66,7 @@ jobs:
       - name: Checkout repo wiki
         uses: actions/checkout@v3
         with: 
-          repository: cctan777/${{ env.APP_NAME }}/wiki
+          repository: cctan777/${{ env.APP_NAME }}.wiki
 
       - name: Check contents of folder
         run: ls -al
