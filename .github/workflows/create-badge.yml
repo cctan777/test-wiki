@@ -34,7 +34,13 @@ jobs:
           echo $badge
 
       - name: Get branch name
-        run: echo ${{ github.ref_name }}
+        uses: mdecoleman/pr-branch-name2.0.0
+        id: vars
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: display branch name
+        run: echo ${{ steps.vars.outputs.branch }}
 
       - name: Update README.md with Code Coverage Badge
         run: sed -i -e "s|<coverage-badge>.*</coverage-badge>|<coverage-badge>[![]($badge)]()<r$RANDOM$RANDOM></coverage-badge>|g" README.md
