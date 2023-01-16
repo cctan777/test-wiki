@@ -34,7 +34,7 @@ jobs:
           echo $badge
 
       - name: Get branch name
-        uses: mdecoleman/pr-branch-name2.0.0
+        uses: mdecoleman/pr-branch-name@v2
         id: vars
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
